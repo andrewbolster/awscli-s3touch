@@ -155,7 +155,7 @@ class S3Touch(BasicCommand):
                 'userIdentity': { 'principalId': 'AWS:{}'.format(self._caller['UserId']) },
                 'eventTime': date, 'eventName': 'ObjectCreated:Put', 's3': {
                     'configurationId': config['Id'], 's3SchemaVersion': '1.0', 'object': {
-                        'eTag': json.loads(file['ETag']), 'key': parse.quote_plus(file['Key']), 'size': file['Size'],
+                        'eTag': json.loads(file['ETag']), 'key': parse.quote_plus(file['Key'], safe='/'), 'size': file['Size'],
                     }, 'bucket': { 'arn': 'arn:aws:s3:::{}'.format(bucket), 'name': bucket }
                 }}]
         })
